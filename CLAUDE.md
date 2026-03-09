@@ -4,7 +4,7 @@
 
 **Vitale prioriteter:**
 1. Få ting gjort med bra kvalitet (over alt)
-2. Internkontroll + ERP-migrering + Bærekraft (denne våren)
+2. Internkontroll + ERP-migrering (Q1–Q4 2026)
 
 ---
 

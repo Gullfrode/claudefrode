@@ -97,13 +97,13 @@ DAGENS FOKUS (top 3)
 ## Eksempel-output
 
 ```
-☕ MORNING BRIEFING – 10. mars 2026
+☕ MORNING BRIEFING – 11. mars 2026 (tirsdag)
 Tidssone: GMT+1 (Trondheim)
 
 EPOST (sist 24t)
 - Calle Internkontroll RFI-tilbakemeldinger — SVAR
 - Suzan Regnskap AP-bokslutning status — GJØRE
-- Ledelse Bærekraftstrategi møte — MØTE KOMMER
+- Ledelse Møtebestilling — MØTE KOMMER
 
 OPPGAVER & DEADLINES
 - [I DAG] Gjennomgang internkontroll-prosess — Deadline kl. 15:00
@@ -111,12 +111,11 @@ OPPGAVER & DEADLINES
 
 DAGENS MØTER
 - 10:30 Internkontroll workshop med Calle + Suzan (60 min)
-- 14:00 Bærekraft kick-off med ledelse (45 min)
+- 14:00 ERP veivalgs-møte (45 min)
 
-DAGENS FOKUS (top 3)
+DAGENS FOKUS (top 2)
 1. Internkontroll — Gjennomgang prosessdokumentasjon
 2. ERP — Analyse av RFI-tilbakemeldinger
-3. Bærekraft — Initialisering av klimaregnskap-kartlegging
 
 ---
 💡 Tip: Bruk time-blocking for dagens struktur. Anbefalt: Deep Work 08:00–09:30.

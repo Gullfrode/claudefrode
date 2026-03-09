@@ -7,6 +7,7 @@ Disse målene vil bli oppdatert hver kvartal. Se current-priorities.md for detal
 **Q1-fokus:**
 - Lock down internkontrollprosesser
 - RFI-gjennomgang og veivalg for ERP
-- Bærekraft-kartlegging initialisert
 
 **Neste revidering:** 1. april 2026
+
+*Bærekraft starter mai 2026.*

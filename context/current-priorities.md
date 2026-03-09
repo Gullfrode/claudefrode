@@ -11,7 +11,6 @@
 - Deadline: Skarpt drift 1. januar 2027
 - Kritisk: Må håndtere Citrix-avhengighet og manuelt arbeid
 
-**3. Bærekraft & Klimaregnskap**
-- Målbilde: Bærekraftstrategi og klimaregnskap på plass
-- Status: Under planlegging
-- Deadline: Sommeren 2026
+---
+
+*Bærekraft & Klimaregnskap: Starter mai 2026. Definert og prioritert av Frode selv.*
