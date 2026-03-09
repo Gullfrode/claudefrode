@@ -22,14 +22,20 @@ Når skillen aktiveres, gjør du følgende:
    - Fjern eventuelle private/"Lunsj"-blokker dersom brukeren ønsker det (spør ved behov).
    - Ikke overskriv eksisterende kalenderelementer som ikke ble opprettet av skillen tidligere (bruk en spesiell tag eller beskrivelse som merker blokker du opprettet).
 
-3. **Opprett/oppdater hendelser via MCP:**
-   - For hver blokk i planen, send MCP-kommando til innebygde kalenderapp (som i Claude CLI/Desktop).
-   - Eksempel MCP-kommando (pseudokode for Claude CLI):
+3. **Generer AppleScript for kalender:**
+   - Opprett en AppleScript-fil (.scpt) med kommandoer for å legge til/oppdatere hendelser i "Kalender".
+   - Bruk følgende struktur for hver blokk:
      ```
-     calendar create --title "Deep Work: Gjennomgang internkontroll-dokumentasjon" --start "2026-03-15 08:00" --end "2026-03-15 09:30" --description "Time-block generert av Claude-assistent"
+     tell application "Calendar"
+         tell calendar "Kalender"
+             make new event with properties {summary:"Deep Work: Gjennomgang internkontroll-dokumentasjon", start date:date "mandag 9. mars 2026 08:00", end date:date "mandag 9. mars 2026 09:00", description:"Time-block generert av Claude-assistent"}
+         end tell
+     end tell
      ```
-   - Hvis en blokk allerede finnes (sjekk på tittel og starttid), oppdater den i stedet for å opprette duplikat.
-   - MCP-integrasjoner håndterer dette mot macOS Calendar, Outlook eller annen koblet app.
+   - Lagre filen som `sync-calendar-[dato].scpt` i workspace-roten.
+   - Instruer brukeren å kjøre scriptet manuelt: `osascript sync-calendar-[dato].scpt`.
+   - Hvis en blokk allerede finnes, oppdater den (sjekk på tittel og dato).
+   - Notat: Brukeren synkroniserer "Kalender" annenhver time med gullfrode@gmail.com-gcalen og frgri@nris.no – ikke rapporter duplikater fra disse.
 
 4. **Bekreftelse:**
    - Gi brukeren en kortliste over hendelser som ble lagt til/oppdatert.
