@@ -8,7 +8,7 @@
 - eller via en MCP‑melding som sier "time block to calendar" eller lignende.
 
 **Formål:**
-Ta en time‑blocking‑plan (generert av time-blocking-assistant) og eksportere den som en ICS-fil for import til kalender. Sørge for at ledige intervaller fylles med blokker, og at eksisterende relevante møter beholdes.
+Ta en time‑blocking‑plan (generert av time-blocking-assistant) og opprette eller oppdatere tilsvarende hendelser i brukers innebygde kalenderapp via MCP-integrasjoner. Sørge for at ledige intervaller fylles med blokker, og at eksisterende relevante møter beholdes.
 
 ## Beskrivelse
 
@@ -20,27 +20,20 @@ Når skillen aktiveres, gjør du følgende:
 
 2. **Filtrer plan:**
    - Fjern eventuelle private/"Lunsj"-blokker dersom brukeren ønsker det (spør ved behov).
-   - Ikke inkluder eksisterende kalenderelementer som ikke ble opprettet av skillen tidligere.
+   - Ikke overskriv eksisterende kalenderelementer som ikke ble opprettet av skillen tidligere (bruk en spesiell tag eller beskrivelse som merker blokker du opprettet).
 
-3. **Generer ICS-fil:**
-   - Opprett en ICS-fil (iCalendar-format) med hver blokk som et VEVENT.
-   - Bruk følgende struktur for hver blokk:
+3. **Opprett/oppdater hendelser via MCP:**
+   - For hver blokk i planen, send MCP-kommando til innebygde kalenderapp (som i Claude CLI/Desktop).
+   - Eksempel MCP-kommando (pseudokode for Claude CLI):
      ```
-     BEGIN:VEVENT
-     UID:timeblock-[uuid]
-     DTSTART:20260315T080000
-     DTEND:20260315T093000
-     SUMMARY:Deep Work: Gjennomgang internkontroll-dokumentasjon
-     DESCRIPTION:Time-block generert av Claude-assistent
-     END:VEVENT
+     calendar create --title "Deep Work: Gjennomgang internkontroll-dokumentasjon" --start "2026-03-15 08:00" --end "2026-03-15 09:30" --description "Time-block generert av Claude-assistent"
      ```
-   - Lagre filen som `time-blocks-[dato].ics` i workspace-roten eller en spesifisert mappe.
-   - Inkluder alle blokker i én fil for enkel import.
+   - Hvis en blokk allerede finnes (sjekk på tittel og starttid), oppdater den i stedet for å opprette duplikat.
+   - MCP-integrasjoner håndterer dette mot macOS Calendar, Outlook eller annen koblet app.
 
 4. **Bekreftelse:**
-   - Gi brukeren en kortliste over hendelser som ble lagt til i ICS-filen.
-   - Instruer hvordan importere: "Importer time-blocks-[dato].ics til Outlook/Google Calendar etc."
-   - Hvis handling mislykkes, informer brukeren.
+   - Gi brukeren en kortliste over hendelser som ble lagt til/oppdatert.
+   - Hvis handling mislykkes (manglende tillatelse, nettverksfeil), informer brukeren og foreslå manuell løsning.
 
 5. **Deaktivere når ferdig:**
    - Legg resultatet i sesjonsminnet slik at morning-briefing eller time-blocking kan referere til det senere.
@@ -48,15 +41,16 @@ Når skillen aktiveres, gjør du følgende:
 ## Eksempel-dialog
 ```
 Bruker: "Sync kalender"
-Assistent: "Genererer plan og eksporterer til ICS..."
-Assistent: "Opprettet time-blocks-2026-03-15.ics med 6 arrangementer. Importer til kalenderen din."
+Assistent: "Genererer plan og oppdaterer kalender..."
+Assistent: "Legg til 6 arrangementer i jobbkalendar; ferdig."
 ```
 
 ## Notater
-- Ingen nettverkskall nødvendig; filen lagres lokalt.
-- Mål: enkel import uten å åpne ekstra apper.
+- Bruker MCP-integrasjoner mot innebygde apper (Mail, Calendar, Reminders på macOS).
+- Mål: minimal støy etter første kjøring, ved senere kjøringer oppdaterer eksisterende blokker i stedet for å lage duplikater.
+- Hvis en blokk kolliderer med en eksisterende uten tag, spør brukeren om duplikat eller overskriv.
 - Fremtidig forbedring: gi brukeren mulighet til å sette egne tidspreferanser (f.eks. tannlegetime) som ekskluderes.
 
 ---
 
-Dette er en høy-nivå beskrivelse; implementeringen bruker standard ICS-format for kompatibilitet.
+Dette kjøres i Claude CLI/Desktop med MCP-tilgang til kalenderapp.
