@@ -9,7 +9,7 @@
 Når brukeren ber om timeblocking:
 
 1. **Samle informasjon:**
-   - Se på dagens møter fra MCP-kalender.
+   - Se på dagens møter fra MCP-kalender (se bort fra hendelser navngitt "Hjemmekontor" eller "På kontoret").
    - Sjekk dagens oppgaver/forfall fra MCP-task.
    - Hent dagens fokusområder fra `context/current-priorities.md` (max 2 nå).
 
