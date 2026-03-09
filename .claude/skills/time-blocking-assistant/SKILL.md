@@ -76,5 +76,7 @@ TIME-BLOCKING FOR 13. mars 2026
 ## Tekniske notat
 
 - Må kunne hente data fra MCP-integrasjoner (kalender, tasks).
+- Se etter MCP-instruksjoner som inneholder "time block"/"plan dagen" eller tilsvarende. Dette kan komme fra Claude CLI, Claude Desktop eller andre MCP-klienter.
+- Når en slik instruksjon fanges i innboks, kjør aktiviteten automatisk.
 - Bruker samme dato-format som morning-briefing.
 - Lagrer anbefalt plan i sesjonsminnet for referanse senere.
