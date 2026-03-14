@@ -34,17 +34,27 @@ EPOST (sist 24t)
 Hvis ingen epost: "Ingen nye e-poster."
 
 ### 3. Oppgaver og deadlines
-**Fra MCP kalender/task-integrasjon:**
+**Fra to kilder – hent parallelt:**
+
+**a) MCP Påminnelser (che-ical-mcp):**
 - Oppgaver som forfaller i dag → flag som "I DAG"
 - Oppgaver som forfaller denne uken → flag som "DENNE UKA"
 - Varsling hvis noe er overdue → "OVERDUE"
 
+**b) GitLab / Ecodream (ecoissues-skill eller direkte API, prosjekt ID 1020):**
+- Hent åpne issues assigned til `frgri`
+- Inkluder issues med label `ikke starta` og issues uten label (aktive)
+- **Utelat** issues med label `fremtidige` – disse er ikke aktuelle ennå (flyttes til `ikke starta` ca. én uke før de er relevante)
+- Vis tittel og evt. forfallsdato
+
+Slå sammen til én liste, sorter etter hastegrad. Merk kilde: `[Påminnelser]` / `[GitLab]`.
+
 **Format:**
 ```
 OPPGAVER & DEADLINES
-- [I DAG] Oppgavenavn — Deadline kl. [TID]
-- [DENNE UKA] Oppgavenavn — Frist [DATO]
-- [OVERDUE] Oppgavenavn — Var skulle være ferdig [DATO]
+- [OVERDUE][Påminnelser] Oppgavenavn — var [DATO]
+- [I DAG][GitLab] Oppgavenavn — #issue-nummer
+- [DENNE UKA][Påminnelser] Oppgavenavn — Frist [DATO]
 ```
 
 Hvis ingen oppgaver: "Ingen oppgaver forfaller i dag."
@@ -125,7 +135,8 @@ DAGENS FOKUS (top 2)
 
 ## Tekniske notat
 
-- **MCP-integrasjoner brukt:** Epost (24t), Kalender (dagens møter), Task-system (deadlines)
+- **MCP-integrasjoner brukt:** Epost (24t), Kalender (dagens møter), Påminnelser (che-ical-mcp), GitLab/Ecodream (prosjekt 1020, assigned til frgri)
+- **GitLab-regel:** Label `fremtidige` ekskluderes alltid – disse flyttes til `ikke starta` ca. én uke før de er aktuelle
 - **Fallback:** Hvis MCP ikke har data, rapportér "Data ikke tilgjengelig fra [kilde]."
 - **Frekvens:** Kjør daglig 08:30 eller ved "morning briefing"-kommando.
 - **Cache:** Cach resultater i sesjonen – refresh ved neste reset.

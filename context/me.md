@@ -9,3 +9,5 @@
 **Hvem jeg er:** Statsautorisert revisor som jobber med økonomi og organisasjonsflyt.
 
 **Viktigste prioritet:** Få ting gjort med bra kvalitet.
+
+**GitHub-repo (dette repoet):** git@github.com:Gullfrode/claudefrode.git

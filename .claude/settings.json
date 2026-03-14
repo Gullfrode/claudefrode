@@ -1,1 +1,16 @@
-{}
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/frodesolem/Desktop/**)",
+      "mcp__apple-mail__search",
+      "mcp__apple-mail__get_email",
+      "Bash(security find-generic-password:*)",
+      "Bash(traceroute -m 5 -w 2 195.254.197.70)"
+    ],
+    "additionalDirectories": [
+      "/Users/frodesolem/claude/.claude/skills",
+      "/Users/frodesolem/Desktop",
+      "/Users/frodesolem/claude/.claude/skills/gitlab-issues"
+    ]
+  }
+}
