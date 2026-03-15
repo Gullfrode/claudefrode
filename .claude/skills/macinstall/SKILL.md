@@ -479,7 +479,32 @@ Disse installeres manuelt – enten fra App Store, vendor-nettsted eller MDM:
 
 ---
 
-## Fase 7 – SwiftBar plugins
+## Fase 7 – OneDrive og SharePoint-synk
+
+### Logg inn i OneDrive
+Åpne OneDrive, logg inn med `frode.solem@sigma2.no` (M365).
+
+### Personlig OneDrive
+Synkes automatisk etter innlogging til:
+```
+~/Library/CloudStorage/OneDrive-Sikt/
+```
+
+### SharePoint-biblioteker (synkes manuelt)
+Gå til hvert bibliotek i nettleseren og klikk **Synkroniser**:
+
+| Bibliotek | Lokal sti |
+|-----------|-----------|
+| Sigma2 - Anskaffelser og leverandører | `~/Library/CloudStorage/OneDrive-Deltebiblioteker–Sikt/Sigma2 - Anskaffelser og leverandører` |
+| Sigma2 - Økonomi - Dimensjoner | `~/Library/CloudStorage/OneDrive-Deltebiblioteker–Sikt/Sigma2 - Økonomi - Dimensjoner` |
+| Sigma2 - Økonomi - Hovedbok | `~/Library/CloudStorage/OneDrive-Deltebiblioteker–Sikt/Sigma2 - Økonomi - Hovedbok` |
+| Sigma2 - Økonomi - Lønnstransaksjoner | `~/Library/CloudStorage/OneDrive-Deltebiblioteker–Sikt/Sigma2 - Økonomi - Lønnstransaksjoner` |
+
+> Finn bibliotekene på SharePoint (sigma2.no) under respektive nettsteder, deretter Documents > Synkroniser.
+
+---
+
+## Fase 8 – SwiftBar plugins
 
 Plugins ligger i `~/swiftbar-plugins/`. Opprett mappen og legg inn disse tre:
 
@@ -572,7 +597,7 @@ chmod +x ~/swiftbar-plugins/wan-status.5m.sh
 
 ---
 
-## Fase 8 – Tailscale og ts-sync
+## Fase 9 – Tailscale og ts-sync
 
 1. Installer Tailscale (se over)
 2. Logg inn: `tailscale login`
