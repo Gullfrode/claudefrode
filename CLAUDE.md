@@ -10,11 +10,11 @@
 
 ## Kontekst
 
-@import context/me.md
-@import context/work.md
-@import context/team.md
-@import context/current-priorities.md
-@import context/goals.md
+@import .claude/context/me.md
+@import .claude/context/work.md
+@import .claude/context/team.md
+@import .claude/context/current-priorities.md
+@import .claude/context/goals.md
 
 ---
 
@@ -29,7 +29,7 @@ Alle stilregler ligger i `.claude/rules/`:
 
 ## Prosjekter (Aktive)
 
-Alle aktive prosjekter ligger i `projects/`:
+Alle aktive prosjekter ligger i `.claude/projects/`:
 - **internkontroll/** – Systemutvikling (slitt Q2)
 - **erp-migrering/** – New system go-live 1.jan 2027
 - **barekraft/** – Strategi + klimaregnskap (sommeren)
@@ -38,7 +38,7 @@ Alle aktive prosjekter ligger i `projects/`:
 
 ## Beslutningslogg
 
-`decisions/log.md` – append-only format:
+`.claude/decisions/log.md` – append-only format:
 ```
 [YYYY-MM-DD] DECISION: ... | REASONING: ... | CONTEXT: ...
 ```
@@ -58,26 +58,26 @@ Si "Remember that..." for å lagre vedvarende preferanser.
 
 ## Templates & Referanser
 
-- **templates/session-summary.md** – Sesjonmalmal (dato, fokus, hva som ble gjort, neste steg).
-- **references/sops/** – Standard Operating Procedures.
-- **references/examples/** – Eksempler, linker, mønstre.
+- **`.claude/templates/session-summary.md`** – Sesjonsmal (dato, fokus, hva som ble gjort, neste steg).
+- **`.claude/references/sops/`** – Standard Operating Procedures.
+- **`.claude/references/examples/`** – Eksempler, linker, mønstre.
 
 ---
 
 ## Vedlikehold
 
 - **Ukentlig:** Ingen manuell oppfølging.
-- **Månedlig:** Oppdater `context/current-priorities.md` etter behov.
-- **Kvartalsvis:** Oppdater `context/goals.md` ved kvartalsstart.
-- **Løpende:** Logg vesentlige beslutninger i `decisions/log.md`.
+- **Månedlig:** Oppdater `.claude/context/current-priorities.md` etter behov.
+- **Kvartalsvis:** Oppdater `.claude/context/goals.md` ved kvartalsstart.
+- **Løpende:** Logg vesentlige beslutninger i `.claude/decisions/log.md`.
 - **Etter behov:** Bygg skills under `.claude/skills/`.
 
 ---
 
 ## Arkivering
 
-Slett aldri. Arkiver i stedet: `archives/` for gamle prosjekter, notater, løst kontekst.
+Slett aldri. Arkiver i stedet: `.claude/archives/` for gamle prosjekter, notater, løst kontekst.
 
 ---
 
-*Sist oppdatert: 9. mars 2026*
+*Sist oppdatert: 2026-03-15*
