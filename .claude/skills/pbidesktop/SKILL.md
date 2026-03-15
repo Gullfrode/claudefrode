@@ -10,6 +10,16 @@ Kobler Power BI Desktop mot GitLab REST API for rapportering på issues, milepæ
 
 ---
 
+## Starte Power BI Desktop
+
+Power BI er installert via Microsoft Store. Åpnes slik:
+
+```bash
+start "" "shell:AppsFolder\Microsoft.MicrosoftPowerBIDesktop_8wekyb3d8bbwe!Microsoft.MicrosoftPowerBIDesktop"
+```
+
+---
+
 ## Konfigurasjon
 
 ```
