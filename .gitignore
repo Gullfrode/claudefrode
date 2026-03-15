@@ -1,8 +1,33 @@
+# Secrets
 .env
 .env.*
 *.env
+.credentials.json
+
+# Claude Code lokal
 CLAUDE.local.md
 .claude/settings.local.json
+
+# Claude Code systemfiler (når ~/.claude/ er repo-rot)
+backups/
+cache/
+debug/
+downloads/
+file-history/
+history.jsonl
+ide/
+mcp-needs-auth-cache.json
+plugins/
+projects/
+settings.json
+settings.local.json
+shell-snapshots/
+todos/
+
+# Python
 node_modules/
 __pycache__/
 *.pyc
+
+# Mac
+.DS_Store
