@@ -138,17 +138,38 @@ in MedDatoer
 
 ---
 
-## GPU-bytte på Proxmox-PC
+## GPU-bytte på pvegamer
 
-Samme PC kjører Ollama (GPU passthrough) eller W11 (GPU passthrough).
-Skript for å bytte:
+**pvegamer** (`root@pvegamer.dingo-smoot.ts.net`) kjører enten W11 eller Ollama med GPU-passthrough – ikke begge samtidig. GPU konfigureres i Proxmox og krever reboot av hypervisoren.
 
-| Skript | Funksjon |
-|---|---|
-| `gpuollama` | Kobler GPU mot Ollama-VM, starter Ollama |
-| `gpuw11` | Kobler GPU mot W11-VM, starter Windows 11 |
+**VM:** `w11gamer` (VMID 215, 30 GB RAM)
 
-*(Detaljer legges til når skriptene er dokumentert)*
+### Skript (iCloud: `~/Library/Mobile Documents/com~apple~CloudDocs/scripts/`)
+
+| Skript | Funksjon | Proxmox-skript på server |
+|---|---|---|
+| `gpuw11` | GPU → W11, rebootes Proxmox, starter w11gamer | `/usr/local/bin/gpu_to_windows.sh` |
+| `gpuollama` | GPU → host (Ollama), rebootes Proxmox | `/usr/local/bin/gpu_to_host.sh` |
+
+### Bruk fra terminal
+
+```bash
+# Start Windows 11 med GPU
+~/Library/Mobile\ Documents/com~apple~CloudDocs/scripts/gpuw11
+
+# Bytt tilbake til Ollama
+~/Library/Mobile\ Documents/com~apple~CloudDocs/scripts/gpuollama
+```
+
+### Hva skriptene gjør
+1. SSH inn på `root@pvegamer.dingo-smoot.ts.net`
+2. Kjører server-side skript som rekonfigurerer VM-config (`hostpci`-parametere)
+3. Rebootes Proxmox – GPU er tilgjengelig i riktig VM etter oppstart
+
+**NB:** Proxmox må rebootees – tar 1–2 min før W11/Ollama er tilgjengelig.
+
+### Tilkobling til W11
+Koble til via **Jump Desktop** etter at VM er oppe.
 
 ---
 
