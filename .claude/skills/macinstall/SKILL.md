@@ -479,7 +479,100 @@ Disse installeres manuelt – enten fra App Store, vendor-nettsted eller MDM:
 
 ---
 
-## Fase 7 – Tailscale og ts-sync
+## Fase 7 – SwiftBar plugins
+
+Plugins ligger i `~/swiftbar-plugins/`. Opprett mappen og legg inn disse tre:
+
+```bash
+mkdir -p ~/swiftbar-plugins
+```
+
+### eduvpn.1m.sh
+Viser oransje/grå prikk i menylinjen avhengig av om eduVPN er tilkoblet.
+
+```bash
+cat > ~/swiftbar-plugins/eduvpn.1m.sh << 'EOF'
+#!/bin/bash
+# <xbar.title>EduVPN Status</xbar.title>
+# <xbar.desc>Viser oransje prikk om EduVPN er tilkoblet, grå om ikke.</xbar.desc>
+
+STATUS=$(scutil --nc list 2>/dev/null | grep 'org.eduvpn.app' | grep -o '(Connected)\|(Disconnected)')
+
+if [[ "$STATUS" == "(Connected)" ]]; then
+    echo "● | color=#FF8C00 bash=open param1=-a param2=eduVPN terminal=false"
+else
+    echo "● | color=#888888 bash=open param1=-a param2=eduVPN terminal=false"
+fi
+EOF
+chmod +x ~/swiftbar-plugins/eduvpn.1m.sh
+```
+
+### mail.1m.sh
+Viser antall uleste epost fra M365 Jobb-kontoen i Apple Mail.
+
+```bash
+cat > ~/swiftbar-plugins/mail.1m.sh << 'EOF'
+#!/bin/bash
+# <xbar.title>Unread Mail</xbar.title>
+# <xbar.desc>Viser antall uleste epost fra alle kontoer i Apple Mail</xbar.desc>
+# <xbar.dependencies>bash,osascript</xbar.dependencies>
+
+UNREAD=$(osascript <<'APPLESCRIPT'
+tell application "Mail"
+    set unreadCount to 0
+    repeat with anAccount in accounts
+        if name of anAccount is "M365 Jobb" then
+            try
+                set unreadCount to unreadCount + (unread count of inbox of anAccount)
+            end try
+        end if
+    end repeat
+    return unreadCount
+end tell
+APPLESCRIPT
+)
+
+if [[ "$UNREAD" -gt 0 ]]; then
+    echo "$UNREAD | sfimage=envelope.fill bash=open param1=-a param2=Mail terminal=false"
+else
+    echo " | sfimage=envelope bash=open param1=-a param2=Mail terminal=false"
+fi
+EOF
+chmod +x ~/swiftbar-plugins/mail.1m.sh
+```
+
+### wan-status.5m.sh
+Viser grønn/rosa prikk basert på om fiber-WAN (eth9) på UDMP er oppe. Kun synlig på hjemmenettverket (10.0.1.x).
+
+```bash
+cat > ~/swiftbar-plugins/wan-status.5m.sh << 'EOF'
+#!/bin/bash
+# <xbar.title>WAN Status</xbar.title>
+# <xbar.desc>Viser aktiv WAN med farget nettverksikon. Kun synlig på Ma maison-nettet.</xbar.desc>
+
+LOCAL_IP=$(ifconfig | grep 'inet 10\.0\.1\.' | awk '{print $2}')
+if [[ -z "$LOCAL_IP" ]]; then
+    exit 0
+fi
+
+CARRIER=$(ssh -o ConnectTimeout=3 -o BatchMode=yes udmp \
+    "cat /sys/class/net/eth9/carrier 2>/dev/null" 2>/dev/null)
+
+if [[ "$CARRIER" == "1" ]]; then
+    echo "● | color=#00C853 href=https://udmp.dingo-smoot.ts.net"
+else
+    echo "● | color=#FF6B9D href=https://udmp.dingo-smoot.ts.net"
+fi
+EOF
+chmod +x ~/swiftbar-plugins/wan-status.5m.sh
+```
+
+### Pek SwiftBar til plugin-mappen
+Åpne SwiftBar > Preferences > Plugin Directory og velg `~/swiftbar-plugins/`.
+
+---
+
+## Fase 8 – Tailscale og ts-sync
 
 1. Installer Tailscale (se over)
 2. Logg inn: `tailscale login`
@@ -490,7 +583,7 @@ Disse installeres manuelt – enten fra App Store, vendor-nettsted eller MDM:
 
 ---
 
-## Fase 8 – Verifisering
+## Fase 9 – Verifisering
 
 ```bash
 # Claude Code fungerer
