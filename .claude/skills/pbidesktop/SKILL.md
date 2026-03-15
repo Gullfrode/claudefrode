@@ -179,7 +179,10 @@ in MedDatoer
 **NB:** Proxmox må rebootees – tar 1–2 min før W11/Ollama er tilgjengelig.
 
 ### Tilkobling til W11
-Koble til via **Jump Desktop** etter at VM er oppe.
+Koble til via **RustDesk** etter at VM er oppe:
+```bash
+open "rustdesk://100.82.11.47"
+```
 
 ---
 
