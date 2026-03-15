@@ -7,7 +7,7 @@
 ## Konfigurasjon
 
 ```
-ENV_PATH    = ~/Library/Mobile Documents/com~apple~CloudDocs/scripts/snippets/laggitlabissues/.env
+ENV_PATH    = ~/claude/.claude/.env   (sentral .env)
 GITLAB_URL  = https://gitlab.sigma2.no/api/v4
 PROJECT_ID  = 1020        (ecodream-prosjektet)
 GROUP_PATH  = ecodream    (gruppen – brukes for gruppemilepæler)
@@ -30,9 +30,7 @@ import datetime
 import os
 from dotenv import load_dotenv
 
-ENV_PATH = os.path.expanduser(
-    "~/Library/Mobile Documents/com~apple~CloudDocs/scripts/snippets/laggitlabissues/.env"
-)
+ENV_PATH = os.path.expanduser("~/claude/.claude/.env")
 load_dotenv(dotenv_path=ENV_PATH)
 
 GITLAB_URL = os.getenv("GITLAB_URL")
