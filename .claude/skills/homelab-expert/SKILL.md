@@ -34,6 +34,7 @@ source ~/.claude/homelab.env
 | pvei3 | 10.0.1.199 | 100.101.102.102 | Proxmox VE hypervisor (i3) – NIC-problemer, brukes Shelly-støpsel |
 | pvebeebox | 10.0.1.200 | 100.116.78.22 | Proxmox VE hypervisor (Beebox) |
 | pvegamer | 10.0.1.191 | 100.94.219.101 | Proxmox VE hypervisor (Gamer) |
+| w11gamer | – | 100.82.11.47 | Windows 11 VM på pvegamer (VMID 215) |
 | pvedell | 10.0.1.194 | 100.118.168.11 | Proxmox VE hypervisor (Dell) – Coral TPU |
 | pbs | 10.0.1.204 | 100.77.101.48 | Proxmox Backup Server |
 | flode | 10.0.1.40 | 100.70.217.57 | QNAP NAS |
@@ -145,6 +146,35 @@ sleep 5
 curl -s -X POST http://10.0.2.160/rpc/Switch.Set \
   -H "Content-Type: application/json" \
   -d '{"id":0,"on":true}'
+```
+
+---
+
+## w11gamer – start og tilkobling
+
+Når brukeren sier "start w11", "start gamer" e.l.:
+
+1. **Kjør gpuw11-skriptet** (konfigurerer GPU-passthrough + rebootes Proxmox):
+```bash
+~/Library/Mobile\ Documents/com~apple~CloudDocs/scripts/gpuw11
+```
+2. **Vent** ~1–2 min på Proxmox-reboot og W11-oppstart
+3. **Åpne RustDesk** mot W11-VM sin Tailscale-IP:
+```bash
+open "rustdesk://100.82.11.47"
+```
+
+**RustDesk** kjører via Citrix på W11. Fast passord og direkte IP-tilgang er aktivert.
+
+**W11gamer har:**
+- VS Code + repo
+- Power BI Desktop
+- PBI MCP i VS Code
+- RustDesk (tilgjengelig via Citrix)
+
+For å bytte tilbake til Ollama:
+```bash
+~/Library/Mobile\ Documents/com~apple~CloudDocs/scripts/gpuollama
 ```
 
 ---
